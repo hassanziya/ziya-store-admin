@@ -12,7 +12,7 @@ export async function PATCH(
     const { label, imageUrl } = body;
 
     if (!userId) {
-      return new NextResponse('unauthenticated', { status: 401 });
+      return new NextResponse('unauthenticated', { status: 403 });
     }
 
     if (!label) {
@@ -38,9 +38,9 @@ export async function PATCH(
       return new NextResponse('Unauthorized', { status: 403 });
     }
 
-    const billboard = await prismadb.billboard.updateMany({
+    const billboard = await prismadb.billboard.update({
       where: {
-        id: params.storeId,
+        id: params.billboardId,
       },
       data: {
         label,

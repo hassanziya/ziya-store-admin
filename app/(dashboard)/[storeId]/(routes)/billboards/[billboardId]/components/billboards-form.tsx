@@ -24,8 +24,6 @@ import {
 import { Input } from '@/components/ui/input';
 import LoaderSpinner from '@/components/ui/spinner';
 import AlertModal from '@/components/modals/alert-modal';
-// import { ApiAlert } from '@/components/ui/api-alert';
-// import { useOrigin } from '@/hooks/use-origin';
 import ImageUpload from '@/components/ui/image-upload';
 
 const formSchema = z.object({
@@ -87,7 +85,7 @@ const BillBoardForm: React.FC<BillBoardFormProps> = ({ initialData }) => {
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push('/');
+      router.push(`/${params.storeId}/billboards`);
       toast.success('Billboard Deleted');
     } catch (error) {
       toast.error('Make sure remove all  categories using this billboard.');
@@ -167,7 +165,6 @@ const BillBoardForm: React.FC<BillBoardFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
