@@ -6,15 +6,15 @@ import { useParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import Heading from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import { BillboardColumn, columns } from './columns';
+import { CategoryColumn, columns } from './columns';
 import { DataTable } from '@/components/ui/data-table';
 import ApiList from '@/components/ui/api-list';
 
-interface BillboardClientProps {
-  data: BillboardColumn[];
+interface CategoryClientProps {
+  data: CategoryColumn[];
 }
 
-const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
+const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
@@ -22,11 +22,11 @@ const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Billboards (${data.length})`}
-          description="Manage billboards for your store"
+          title={`Categories (${data.length})`}
+          description="Manage categories for your store"
         />
         <Button
-          onClick={() => router.push(`/${params.storeId}/billboards/new`)}
+          onClick={() => router.push(`/${params.storeId}/categories/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
           Add New
@@ -36,13 +36,13 @@ const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
       <DataTable
         columns={columns}
         data={data}
-        searchKey={['label', 'createdAt']}
+        searchKey={['name', 'createdAt']}
       />
-      <Heading title="API" description="Api calls for billboards" />
+      <Heading title="API" description="Api calls for categories" />
       <Separator />
-      <ApiList entityName="billboards" entityIdName="billboardId" />
+      <ApiList entityName="categories" entityIdName="categoryId" />
     </>
   );
 };
 
-export default BillboardClient;
+export default CategoryClient;
