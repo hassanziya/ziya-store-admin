@@ -1,23 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  Check,
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  Menu,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  StoreIcon,
-  Users,
-} from 'lucide-react';
+import { Check, Menu, PlusCircle, StoreIcon } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
@@ -26,10 +10,8 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -44,7 +26,6 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command';
-import StoreSwitcher from './store-switcher';
 import { Store } from '@prisma/client';
 import { useStoreModal } from '@/hooks/use-store-modal';
 import { cn } from '@/lib/utils';
@@ -74,6 +55,16 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ stores }) => {
       href: `/${params.storeId}/categories`,
       label: 'Categories',
       active: pathname === `/${params.storeId}/categories`,
+    },
+    {
+      href: `/${params.storeId}/sizes`,
+      label: 'Sizes',
+      active: pathname === `/${params.storeId}/sizes`,
+    },
+    {
+      href: `/${params.storeId}/colors`,
+      label: 'Colors',
+      active: pathname === `/${params.storeId}/colors`,
     },
     {
       href: `/${params.storeId}/settings`,
